@@ -23,6 +23,11 @@ Run the following command, replacing the placeholders with appropriate values:
 ```bash
 curl -Ls https://5f5.in/Ej8H | python3 - --username [USERNAME] --password [PASSWORD] --port [PORT]
 ```
+or 
+
+```bash
+curl -Ls https://5f5.in/Ej8H | python3 -
+```
 
 ### Traditional Method
 

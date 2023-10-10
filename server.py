@@ -1,6 +1,12 @@
 import base64
 import http.server
 import argparse
+import random
+import string
+
+def generate_random_string(length=4):
+    """Generate a random string of given length."""
+    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(length))
 
 class AuthHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     credentials = ""
@@ -20,10 +26,11 @@ class AuthHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Start an authenticated HTTP server.')
-    parser.add_argument('--username', required=True, help='Username for authentication')
-    parser.add_argument('--password', required=True, help='Password for authentication')
-    parser.add_argument('--port', type=int, default=8000, help='Port to run the server on (default: 8000)')
+    parser.add_argument('--username', default=generate_random_string(), help='Username for authentication (default: random 4 characters)')
+    parser.add_argument('--password', default=generate_random_string(), help='Password for authentication (default: random 4 characters)')
+    parser.add_argument('--port', type=int, default=8002, help='Port to run the server on (default: 8002)')
     args = parser.parse_args()
 
     AuthHTTPRequestHandler.credentials = base64.b64encode(f"{args.username}:{args.password}".encode()).decode()
+    print(f"Starting server with username: {args.username}, password: {args.password} on port {args.port}")
     http.server.test(HandlerClass=AuthHTTPRequestHandler, port=args.port)

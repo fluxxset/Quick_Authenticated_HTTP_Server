@@ -34,7 +34,7 @@ curl -Ls https://5f5.in/Ej8H | python3 -
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/fluxx03/Quick_Authenticated_HTTP_Server.git
+   git clone https://github.com/fluxxset/Quick_Authenticated_HTTP_Server.git
    ```
 
 2. Navigate to the repository directory:
